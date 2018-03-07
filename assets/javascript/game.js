@@ -53,14 +53,14 @@ $(document).ready(function() {
     // 1. function to reset back to inital attack and health values to html and appropriate starting text to choose your fighter
     $("#chooseHero").text("Please choose a hero to fight on your side:");
     
-    $("#lukeAttack").text(lukeSkywalker.attack);
-    $("#luckHealth").text(lukeSkywalker.health);
-    $("#vaderAttack").text(darthVader.attack);
-    $("#vaderHealth").text(darthVader.health);
-    $("#hanAttack").text(hanSolo.attack);
-    $("#hanHealth").text(hanSolo.health);
-    $("#bobaAttack").text(bobaFett.attack);
-    $("#bobaHealth").text(bobaFett.health);
+    $("#lukeAttack").html(lukeSkywalker.attack);
+    $("#luckHealth").html(lukeSkywalker.health);
+    $("#vaderAttack").html(darthVader.attack);
+    $("#vaderHealth").html(darthVader.health);
+    $("#hanAttack").html(hanSolo.attack);
+    $("#hanHealth").html(hanSolo.health);
+    $("#bobaAttack").html(bobaFett.attack);
+    $("#bobaHealth").html(bobaFett.health);
     
     // 2. options to choose your fighter
     // if the luck card is clicked
@@ -157,10 +157,10 @@ $(document).ready(function() {
     // increase fighter attack by 8 by each attack
     activeFighter.attack += 8;
     // show updated attack and health of fighter and opponent on html   ??????????
-    $("#activeFighterPlace .attack").text(activeFighter.attack);
-    $("#activeFighterPlace .health").text(activeFighter.health);
-    $("#activeOpPlace .attack").text(activeOpponent.attack);
-    $("#activeOpPlace .health").text(activeOpponent.health);
+    $("#activeFighterPlace .attack").html(activeFighter.attack);
+    $("#activeFighterPlace .health").html(activeFighter.health);
+    $("#activeOpPlace .attack").html(activeOpponent.attack);
+    $("#activeOpPlace .health").html(activeOpponent.health);
     
       // show result of the game                          
       roundResult();
