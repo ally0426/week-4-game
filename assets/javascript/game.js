@@ -53,7 +53,7 @@ $(document).ready(function() {
     // 1. function to reset back to inital attack and health values to html and appropriate starting text to choose your fighter
     $("#chooseHero").text("Please choose a hero to fight on your side:");
     
-    $("#lukeAttack").html(lukeSkywalker.attack);
+    $("#lukeAttack").text(lukeSkywalker.attack);
     $("#luckHealth").html(lukeSkywalker.health);
     $("#vaderAttack").html(darthVader.attack);
     $("#vaderHealth").html(darthVader.health);
@@ -61,6 +61,7 @@ $(document).ready(function() {
     $("#hanHealth").html(hanSolo.health);
     $("#bobaAttack").html(bobaFett.attack);
     $("#bobaHealth").html(bobaFett.health);
+    
     
     // 2. options to choose your fighter
     // if the luck card is clicked
@@ -153,7 +154,7 @@ $(document).ready(function() {
     activeFighter.health -= activeOpponent.attack;
     
     // 5. show attack results on the attack log
-    $("#attackLog").text("You attacked " + activeOp.name + " for " + activeFighter.attack + " damage! Meanwhile, " + activeOp.name + " attacked you for " + activeOp.attack + " damage.");
+    $("#attackLog").html("You attacked " + activeOpponent.name + " for " + activeFighter.attack + " damage! Meanwhile, " + activeOpponent.name + " attacked you for " + activeOpponent.attack + " damage.");
     // increase fighter attack by 8 by each attack
     activeFighter.attack += 8;
     // show updated attack and health of fighter and opponent on html   ??????????
@@ -180,15 +181,15 @@ $(document).ready(function() {
   $("#restart").on("click", function() {
     // place each hero card on its original place
     $("#lukePlace").append(lukeCard);
-    $("#lukePlace").append(lukeCard);
-    $("#lukePlace").append(lukeCard);
-    $("#lukePlace").append(lukeCard);
+    $("#vaderPlace").append(vaderCard);
+    $("#hanPlace").append(hanCard);
+    $("#bobaPlace").append(bobaCard);
     // delete border effect on all the cards
-    $("#lukeCard, #vaderCard, hanCard, bobaCard").css({"border": "none"});
+    $("#lukeCard, #vaderCard, #hanCard, #bobaCard").css({"border": "none"});
     // empty attack log, fighterDisplay and new opponent areas
     $("#attackLog").empty();
-    $("#fighterDisplay").empty();
-    $("newOp").empty();
+    $("#fighterResult").empty();
+    $("#newOpRequest").empty();
     
     // start game again
     startGame();
@@ -206,40 +207,41 @@ $(document).ready(function() {
       // luck card cannot be clicked any more as already chosen
       $("#lukeCard").off("click");
       // give border effects on the other cards to be chosen as opponent
-      $("#vader, #han, #boba").css({"border": "5px solid red"});
+      $("#vaderCard, #hanCard, #bobaCard").css({"border": "5px solid red"});
+      
       // if vader is chosen as opponent
-      $("#vader").on("click", function() {
+      $("#vaderCard").on("click", function() {
         // change vader as opponent by changing status as true
         darthVader.activeOp = true;
         // move vader card to active opponent place
         $("#vaderCard").detach().appendTo("#activeOpPlace");
         // move han and boba cards to 2 remaining opponents places
-        $("hanCard").detach().appendTo("#remainingOp1");
-        $("bobaCard").detach().appendTo("#remainingOp2");
+        $("#hanCard").detach().appendTo("#remainingOp1");
+        $("#bobaCard").detach().appendTo("#remainingOp2");
         // empty the choose hero area as both fighter and opponent are chosen
         $("#chooseHero").empty();
       });
       // if han is chosen as opponent
-      $("#han").on("click", function() {
+      $("#hanCard").on("click", function() {
         // change han as opponent by changing status as true
         hanSolo.activeOp = true;
         // move han card to active opponent place
         $("#hanCard").detach().appendTo("#activeOpPlace");
         // move vader and boba cards to 2 remaining opponents places
-        $("vaderCard").detach().appendTo("#remainingOp1");
-        $("bobaCard").detach().appendTo("#remainingOp2");
+        $("#vaderCard").detach().appendTo("#remainingOp1");
+        $("#bobaCard").detach().appendTo("#remainingOp2");
         // empty the choose hero area as both fighter and opponent are chosen
         $("#chooseHero").empty();
       });
       // if boba is chosen as opponent
-      $("#boba").on("click", function() {
+      $("#bobaCard").on("click", function() {
         // change boba as opponent by changing status as true
         bobaFett.activeOp = true;
         // move boba card to active opponent place
         $("#bobaCard").detach().appendTo("#activeOpPlace");
         // move vader and boba cards to 2 remaining opponents places
-        $("vaderCard").detach().appendTo("#remainingOp1");
-        $("bobaCard").detach().appendTo("#remainingOp2");
+        $("#vaderCard").detach().appendTo("#remainingOp1");
+        $("#bobaCard").detach().appendTo("#remainingOp2");
         // empty the choose hero area as both fighter and opponent are chosen
         $("#chooseHero").empty();
       });   
@@ -260,7 +262,7 @@ $(document).ready(function() {
         $("#lukeCard, #hanCard, #bobaCard").off("click");
         $("#chooseHero").empty();
       });
-      $("#han").click(function() {
+      $("#hanCard").click(function() {
         hanSolo.activeOp = true;
         $("#hanCard").detach().appendTo("#activeOpPlace");
         $("#lukeCard").detach().appendTo("#remainingOp1");
@@ -268,7 +270,7 @@ $(document).ready(function() {
         $("#hanCard, #lukeCard, #bobaCard").off("click");
         $("#chooseHero").empty();
       });
-      $("#boba").click(function() {
+      $("#bobaCard").click(function() {
         bobaFett.activeOp = true;
         $("#bobaCard").detach().appendTo("#activeOpPlace");
         $("#lukeCard").detach().appendTo("#remainingOp1");
@@ -379,7 +381,7 @@ $(document).ready(function() {
       // there is no active opponent, so the value became undefined
       activeOpponent = undefined;
       // remove active Op card from active Op place      ????????????????
-      $("#activeOp .card").remove();
+      $("#activeOpPlace .card").remove();
       
       // ask to choose another opponent to defeat
       $("#newOpRequest").show().text("Now click a new opponent to defeat!");
