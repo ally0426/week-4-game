@@ -39,10 +39,10 @@ $(document).ready(function() {
   };
   
   // set html cards to jQuery variables
-  var lukeCard = $("#lukeCard");
-  var vaderCard = $("#vaderCard");
-  var hanCard = $("#hanCard");
-  var bobaCard = $("#bobaCard");
+  var lukeCard = $("#luke");
+  var vaderCard = $("#vader");
+  var hanCard = $("#han");
+  var bobaCard = $("#boba");
   
   // set variables to hold active fighter and opponent stats
   var activeFighter;
@@ -65,7 +65,7 @@ $(document).ready(function() {
     
     // 2. options to choose your fighter
     // if the luck card is clicked
-    $("#lukeCard").on("click", function() {
+    $("#luke").on("click", function() {
       // make sure whether any other hero was already chosen as your fighter or not
       if(lukeSkywalker.active === false && darthVader.active === false && hanSolo.active === false && bobaFett.active === false) {
         // if nothing was chosed as your fighter, luke is your ACTIVE fighter and change the status as true
@@ -75,7 +75,7 @@ $(document).ready(function() {
       }      
     });
      // if the vader card is clicked
-    $("#vaderCard").on("click", function() {
+    $("#vader").on("click", function() {
       // make sure whether any other hero was already chosen as your fighter or not
       if(lukeSkywalker.active === false && darthVader.active === false && hanSolo.active === false && bobaFett.active === false) {
         // if nothing was chosed as your fighter, luke is your ACTIVE fighter and change the status as true
@@ -85,7 +85,7 @@ $(document).ready(function() {
       }      
     });
      // if the han card is clicked
-    $("#hanCard").on("click", function() {
+    $("#han").on("click", function() {
       // make sure whether any other hero was already chosen as your fighter or not
       if(lukeSkywalker.active === false && darthVader.active === false && hanSolo.active === false && bobaFett.active === false) {
         // if nothing was chosed as your fighter, luke is your ACTIVE fighter and change the status as true
@@ -95,7 +95,7 @@ $(document).ready(function() {
       }      
     });
      // if the boba card is clicked
-    $("#bobaCard").on("click", function() {
+    $("#boba").on("click", function() {
       // make sure whether any other hero was already chosen as your fighter or not
       if(lukeSkywalker.active === false && darthVader.active === false && hanSolo.active === false && bobaFett.active === false) {
         // if nothing was chosed as your fighter, luke is your ACTIVE fighter and change the status as true
@@ -185,7 +185,7 @@ $(document).ready(function() {
     $("#hanPlace").append(hanCard);
     $("#bobaPlace").append(bobaCard);
     // delete border effect on all the cards
-    $("#lukeCard, #vaderCard, #hanCard, #bobaCard").css({"border": "none"});
+    $("#luke, #vader, #han, #boba").css({"border": "none"});
     // empty attack log, fighterDisplay and new opponent areas
     $("#attackLog").empty();
     $("#fighterResult").empty();
@@ -201,147 +201,150 @@ $(document).ready(function() {
     // if luck is chosen as fighter
     if(luckSkywalker.active) {
       // move luck card to active fighter place
-      $("#lukeCard").detach().appendTo("#activeFighterPlace").css({"border": "5px solid green"});
+      $("#luke").detach().appendTo("#activeFighterPlace").css({"border": "5px solid green"});
       // change the content from choose fighter to choose opponent
       $("#chooseHero").text("Now select an opponent to face:");
       // luck card cannot be clicked any more as already chosen
-      $("#lukeCard").off("click");
+      $("#luke").off("click");
       // give border effects on the other cards to be chosen as opponent
-      $("#vaderCard, #hanCard, #bobaCard").css({"border": "5px solid red"});
+      $("#vader, #han, #boba").css({"border": "5px solid red"});
       
       // if vader is chosen as opponent
-      $("#vaderCard").on("click", function() {
+      $("#vader").on("click", function() {
         // change vader as opponent by changing status as true
         darthVader.activeOp = true;
         // move vader card to active opponent place
-        $("#vaderCard").detach().appendTo("#activeOpPlace");
+        $("#vader").detach().appendTo("#activeOpPlace");
         // move han and boba cards to 2 remaining opponents places
-        $("#hanCard").detach().appendTo("#remainingOp1");
-        $("#bobaCard").detach().appendTo("#remainingOp2");
+        $("#han").detach().appendTo("#remainingOp1");
+        $("#boba").detach().appendTo("#remainingOp2");
+        $("#vader, #han, #boba").off("click");
         // empty the choose hero area as both fighter and opponent are chosen
         $("#chooseHero").empty();
       });
       // if han is chosen as opponent
-      $("#hanCard").on("click", function() {
+      $("#han").on("click", function() {
         // change han as opponent by changing status as true
         hanSolo.activeOp = true;
         // move han card to active opponent place
-        $("#hanCard").detach().appendTo("#activeOpPlace");
+        $("#han").detach().appendTo("#activeOpPlace");
         // move vader and boba cards to 2 remaining opponents places
-        $("#vaderCard").detach().appendTo("#remainingOp1");
-        $("#bobaCard").detach().appendTo("#remainingOp2");
+        $("#vader").detach().appendTo("#remainingOp1");
+        $("#boba").detach().appendTo("#remainingOp2");
+        $("#vader, #han, #boba").off("click");
         // empty the choose hero area as both fighter and opponent are chosen
         $("#chooseHero").empty();
       });
       // if boba is chosen as opponent
-      $("#bobaCard").on("click", function() {
+      $("#boba").on("click", function() {
         // change boba as opponent by changing status as true
         bobaFett.activeOp = true;
         // move boba card to active opponent place
-        $("#bobaCard").detach().appendTo("#activeOpPlace");
+        $("#boba").detach().appendTo("#activeOpPlace");
         // move vader and boba cards to 2 remaining opponents places
-        $("#vaderCard").detach().appendTo("#remainingOp1");
-        $("#bobaCard").detach().appendTo("#remainingOp2");
+        $("#vader").detach().appendTo("#remainingOp1");
+        $("#boba").detach().appendTo("#remainingOp2");
+        $("#vader, #han, #boba").off("click");
         // empty the choose hero area as both fighter and opponent are chosen
         $("#chooseHero").empty();
       });   
     } // end of luke hero path
     
     else if (darthVader.active) {
-      $("#vaderCard").detach().appendTo("#activeFighterPlace").css({"border": "5px solid green"});
+      $("#vader").detach().appendTo("#activeFighterPlace").css({"border": "5px solid green"});
       $("#chooseHero").text("Now select an opponent to face:");
-      $("#vaderCard").off("click");
-      $("#lukeCard, #hanCard, #bobaCard").css({"border": "5px solid red"});
+      $("#vader").off("click");
+      $("#luke, #han, #boba").css({"border": "5px solid red"});
       
       // click enemy now and move to correct positions
-      $("#lukeCard").on("click", function() {
+      $("#luke").on("click", function() {
         lukeSkywalker.activeOp = true;
-        $("#lukeCard").detach().appendTo("#activeOpPlace");
-        $("#hanCard").detach().appendTo("#remainingOp1");
-        $("#bobaCard").detach().appendTo("#remainingOp2");
-        $("#lukeCard, #hanCard, #bobaCard").off("click");
+        $("#luke").detach().appendTo("#activeOpPlace");
+        $("#han").detach().appendTo("#remainingOp1");
+        $("#boba").detach().appendTo("#remainingOp2");
+        $("#luke, #han, #boba").off("click");
         $("#chooseHero").empty();
       });
-      $("#hanCard").click(function() {
+      $("#han").on("click", function()  {
         hanSolo.activeOp = true;
-        $("#hanCard").detach().appendTo("#activeOpPlace");
-        $("#lukeCard").detach().appendTo("#remainingOp1");
-        $("#bobaCard").detach().appendTo("#remainingOp2");
-        $("#hanCard, #lukeCard, #bobaCard").off("click");
+        $("#han").detach().appendTo("#activeOpPlace");
+        $("#luke").detach().appendTo("#remainingOp1");
+        $("#boba").detach().appendTo("#remainingOp2");
+        $("#han, #luke, #boba").off("click");
         $("#chooseHero").empty();
       });
-      $("#bobaCard").click(function() {
+      $("#boba").on("click", function()  {
         bobaFett.activeOp = true;
-        $("#bobaCard").detach().appendTo("#activeOpPlace");
-        $("#lukeCard").detach().appendTo("#remainingOp1");
-        $("#hanCard").detach().appendTo("#remainingOp2");
-        $("#lukeCard, #hanCard, #bobaCard").off("click");
+        $("#boba").detach().appendTo("#activeOpPlace");
+        $("#luke").detach().appendTo("#remainingOp1");
+        $("#han").detach().appendTo("#remainingOp2");
+        $("#luke, #han, #boba").off("click");
         $("#chooseHero").empty();
       });
     }// end of vader hero path
     
     else if (hanSolo.active === true) {
-      $("#hanCard").detach().appendTo("#activeFighterPlace").css({"border": "5px solid green"});
+      $("#han").detach().appendTo("#activeFighterPlace").css({"border": "5px solid green"});
       $("#chooseHero").text("Now select an opponent to face:");
-      $("#hanCard").off("click");
-      $("#lukeCard, #vaderCard, #bobaCard").css({"border": "5px solid red"});
+      $("#han").off("click");
+      $("#luke, #vader, #boba").css({"border": "5px solid red"});
       
       // click enemy now and move to correct positions
-      $("#lukeCard").click(function() {
+      $("#luke").on("click", function()  {
         lukeSkywalker.activeOp = true;
-        $("#lukeCard").detach().appendTo("#activeOpPlace");
-        $("#vaderCard").detach().appendTo("#remainingOp1");
-        $("#bobaCard").detach().appendTo("#remainingOp2");
-        $("#lukeCard, #vaderCard, #bobaCard").off("click");
+        $("#luke").detach().appendTo("#activeOpPlace");
+        $("#vader").detach().appendTo("#remainingOp1");
+        $("#boba").detach().appendTo("#remainingOp2");
+        $("#luke, #vader, #boba").off("click");
         $("#chooseHero").empty();
       });
-      $("#vaderCard").click(function() {
+      $("#vader").on("click", function()  {
         darthVader.activeOp = true;
-        $("#vaderCard").detach().appendTo("#activeOpPlace");
-        $("#lukeCard").detach().appendTo("#remainingOp1");
-        $("#bobaCard").detach().appendTo("#remainingOp2");
-        $("#lukeCard, #vaderCard, #bobaCard").off("click");
+        $("#vader").detach().appendTo("#activeOpPlace");
+        $("#luke").detach().appendTo("#remainingOp1");
+        $("#boba").detach().appendTo("#remainingOp2");
+        $("#luke, #vader, #boba").off("click");
         $("#choosekHero").empty();
       });
-      $("#bobaCard").click(function() {
+      $("#boba").on("click", function()  {
         bobaFett.activeOp = true;
-        $("#bobaCard").detach().appendTo("#activeOpPlace");
-        $("#lukeCard").detach().appendTo("#remainingOp1");
-        $("#vaderCard").detach().appendTo("#remainingOp2");
-        $("#lukeCard, #vaderCard, #bobaCard").off("click");
+        $("#boba").detach().appendTo("#activeOpPlace");
+        $("#luke").detach().appendTo("#remainingOp1");
+        $("#vader").detach().appendTo("#remainingOp2");
+        $("#luke, #vader, #boba").off("click");
         $("#choosekHero").empty();
       });
     } // end of han hero path
     
     else if (bobaFett.active === true) {
-      $("#bobaCard").detach().appendTo("#activeFighterPlace").css({"border": "5px solid green"});
+      $("#boba").detach().appendTo("#activeFighterPlace").css({"border": "5px solid green"});
       $("#chooseHero").text("Now select an opponent to face:");
-      $("#bobaCard").off("click");
-      $("#lukeCard, #vaderCard, #hanCard").css({"border": "5px solid red"});
+      $("#boba").off("click");
+      $("#luke, #vader, #han").css({"border": "5px solid red"});
       
       // click enemy now and move to correct positions
-      $("#lukeCard").click(function() {
+      $("#luke").on("click", function()  {
         lukeSkywalker.activeOp = true;
-        $("#lukeCard").detach().appendTo("#activeOpPlace");
-        $("#vaderCard").detach().appendTo("#remainingOp1");
-        $("#hanCard").detach().appendTo("#remainingOp2");
-        $("#lukeCard, #vaderCard, #hanCard").off("click");
+        $("#luke").detach().appendTo("#activeOpPlace");
+        $("#vader").detach().appendTo("#remainingOp1");
+        $("#han").detach().appendTo("#remainingOp2");
+        $("#luke, #vader, #han").off("click");
         $("#chooseHero").empty();
       });
-      $("#vaderCard").click(function() {
+      $("#vader").on("click", function()  {
         darthVader.activeOp = true;
-        $("#vaderCard").detach().appendTo("#activeOpPlace");
-        $("#lukeCard").detach().appendTo("#remainingOp1");
-        $("#hanCard").detach().appendTo("#remainingOp2");
-        $("#lukeCard, #vaderCard, #hanCard").off("click");
+        $("#vader").detach().appendTo("#activeOpPlace");
+        $("#luke").detach().appendTo("#remainingOp1");
+        $("#han").detach().appendTo("#remainingOp2");
+        $("#luke, #vader, #han").off("click");
         $("#chooseHero").empty();
       });
-      $("#hanCard").click(function() {
+      $("#han").on("click", function()  {
         hanSolo.activeOp = true;
-        $("#hanCard").detach().appendTo("#activeOpPlace");
-        $("#lukeCard").detach().appendTo("#remainingOp1");
-        $("#vaderCard").detach().appendTo("#remainingOp2");
-        $("#lukeCard, #vaderCard, #hanCard").off("click");
+        $("#han").detach().appendTo("#activeOpPlace");
+        $("#luke").detach().appendTo("#remainingOp1");
+        $("#vader").detach().appendTo("#remainingOp2");
+        $("#luke, #vader, #han").off("click");
         $("#chooseHero").empty();
       });
     } // end of boba hero path
@@ -386,42 +389,42 @@ $(document).ready(function() {
       // ask to choose another opponent to defeat
       $("#newOpRequest").show().text("Now click a new opponent to defeat!");
       // if luke is chosed as the next opponent
-      $("#lukeCard").on("click", function() {
+      $("#luke").on("click", function() {
         // if luck is not fighter ( & chosed as the next opponent)
         if(!luckSkywalker.active) {
           // luck becomes active opponent by chaning active op status as true
           lukeSkywalker.activeOp = true;
           // detach luck card and move to active op place 
-          $("#luckCard").detach().appendTo("#activeOpPlace");
+          $("#luck").detach().appendTo("#activeOpPlace");
           // hide new op request message
           $("#newOpRequest").hide();
           // cannot other opponents cards as opponent was chosen
-          $("#vaderCard, #hanCard, #bobaCard").off("click");        
+          $("#vader, #han, #boba").off("click");        
         }  
       });
       
-      $("#vaderCard").on("click", function() {
+      $("#vader").on("click", function() {
           if (!darthVader.active) {
             darthVader.activeOp = true;
-            $("#vaderCard").detach().appendTo("#activeOpPlace");
+            $("#vader").detach().appendTo("#activeOpPlace");
             $("#newOpRequest").hide();
-            $("#lukeCard, #hanCard, #bobaCard").off("click");
+            $("#luke, #han, #boba").off("click");
           } 
         });
-        $("#hanCard").on("click", function() {
+        $("#han").on("click", function() {
           if (!hanSolo.active) {
             hanSolo.activeOp = true;
-            $("#hanCard").detach().appendTo("#activeOpPlace");
+            $("#han").detach().appendTo("#activeOpPlace");
             $("#newOpRequest").hide();
-            $("#lukeCard, #vaderCard, #bobaCard").off("click");
+            $("#luke, #vader, #boba").off("click");
           }
         });
-        $("#bobaCard").click(function() {
+        $("#boba").on("click", function()  {
           if (!bobaFett.active) {
             bobaFett.activeOp = true;
-            $("#bobaCard").detach().appendTo("#activeOpPlace");
+            $("#boba").detach().appendTo("#activeOpPlace");
             $("#newOpRequest").hide();
-            $("#lukeCard, #vaderCard, #hanCard").off("click");
+            $("#luke, #vader, #han").off("click");
           }
         });   
     } 
