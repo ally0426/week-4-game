@@ -1,58 +1,59 @@
 body {
-  background-color: black !important;
-  background-image: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-259725.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  overflow: auto;
-}
-
-.container-fluid {
-  color: white;
-}
-
-/* HEADERS */
-.title {
-  text-align: center;
-}
-
-#reset {
-  text-align: center;
-}
-
-/* CARDS */
-.card {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
+    background-color: black !important;
+    background-image: url("https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-259725.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: auto;
+  }
+  
+  .container-fluid {
+    color: white;
+  }
+  
+  /* HEADERS */
+  .title {
+    text-align: center;
+  }
+  
+  #reset {
+    text-align: center;
+  }
+  
+  /* CARDS */
+  .card {
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
+      width: 100%;
+      height: 100%;
+      color: black;
+      background-color: white;
+  
+  }
+  
+  .card:hover {
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  .cardWrap {
+      padding: 2px 16px;
+  }
+  
+  .glyphicon {
+    font-size: 30px;
+    padding: 20px 20px;
+  }
+  
+  img {
+    margin: auto;
     width: 100%;
-    height: 100%;
-    color: black;
-    background-color: white;
-
-}
-
-.card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-.cardWrap {
-    padding: 2px 16px;
-}
-
-.glyphicon {
-  font-size: 30px;
-  padding: 20px 20px;
-}
-
-img {
-  margin: auto;
-  width: 100%;
-}
-
-/* VERSUS STAGING AREA */
-.fightDivide {
-  text-align: center;
-}
-
-#benchOp1, #benchOp2 {
-  width: 100%;
-}
+  }
+  
+  /* VERSUS STAGING AREA */
+  .fightDivide {
+    text-align: center;
+  }
+  
+  #benchOp1, #benchOp2 {
+    width: 100%;
+  }
+  
